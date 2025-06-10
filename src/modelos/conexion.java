@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class conexion {
     Connection con;
-    String url="jdbc:mysql://localhost:3306/bdferricov1?serverTimezone=UTC";
+    String url="jdbc:mysql://localhost:3306/bdferricov1";
     String user="root";
-    String pass="Jrac20421234";
+    String pass="";
     public Connection getConecxion(){
         try {
         Class.forName("com.mysql.cj.jdbc.Driver");
