@@ -107,10 +107,10 @@ public class UsuarioDAO extends SQL{
     public List<Usuario> listarCnt(String dato, int cnt) {
         Connection con = null;
         PreparedStatement pst = null;
-        conexion conectar = new conexion();
+        Conexion conectar = new Conexion();
         ArrayList<Usuario> listaArray = new ArrayList<Usuario>();
         try {
-            con = conectar.getConecxion();
+            con = conectar.getConexion();
             pst = con.prepareStatement("select * from usuario where estado='1' "
                     + " and usuario  like '%" + dato + "%' and usuario!='SISTEMA' "
                     + "  order by id_usuario desc limit 0," + cnt);

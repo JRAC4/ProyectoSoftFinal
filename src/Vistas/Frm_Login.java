@@ -52,7 +52,7 @@ ConfigGeneral config = new ConfigGeneral();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnIniciarSesion = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtUsuario = new org.edisoncor.gui.textField.TextFieldRectBackground();
         txtPassword = new org.edisoncor.gui.passwordField.PasswordFieldRectBackground();
@@ -108,18 +108,18 @@ ConfigGeneral config = new ConfigGeneral();
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Password");
 
-        jButton2.setBackground(new java.awt.Color(26, 106, 146));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Iniciar Sesión");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.setDefaultCapable(false);
-        jButton2.setOpaque(true);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarSesion.setBackground(new java.awt.Color(26, 106, 146));
+        btnIniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSesion.setText("Iniciar Sesión");
+        btnIniciarSesion.setBorderPainted(false);
+        btnIniciarSesion.setContentAreaFilled(false);
+        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnIniciarSesion.setDefaultCapable(false);
+        btnIniciarSesion.setOpaque(true);
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnIniciarSesionActionPerformed(evt);
             }
         });
 
@@ -149,7 +149,7 @@ ConfigGeneral config = new ConfigGeneral();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -173,7 +173,7 @@ ConfigGeneral config = new ConfigGeneral();
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addContainerGap(115, Short.MAX_VALUE))
@@ -245,15 +245,6 @@ ConfigGeneral config = new ConfigGeneral();
 
     }//GEN-LAST:event_loginMousePressed
 
-    public String leeUsuario() {
-        return txtUsuario.getText();
-    }
-
-    public String leePassword() {
-        return txtPassword.getText();
-    }
-
-
     private void txt_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_emailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_emailActionPerformed
@@ -262,6 +253,14 @@ ConfigGeneral config = new ConfigGeneral();
         System.exit(-1);
     }//GEN-LAST:event_formWindowClosing
 
+        public String leeUsuario() {
+        return txtUsuario.getText();
+    }
+
+    public String leePassword() {
+        return txtPassword.getText();
+    }
+    
     public void logear() {
 
         if (leeUsuario().equalsIgnoreCase("")) {
@@ -276,13 +275,9 @@ ConfigGeneral config = new ConfigGeneral();
             return;
         }
 
-        //put your sql/your statements here to check for password and email if correct
-        //then
-        //also validate -
         loader.show();
         login.hide();
 
-        // lets add timeout
         new java.util.Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -294,10 +289,7 @@ ConfigGeneral config = new ConfigGeneral();
                     int id_sedeS = controlador.obtenerId_descripcionSede(leeUsuario());
                     Alerta alert = new Alerta("Mensaje", "Bienvenido " + leeUsuario());
                     alert.setVisible(true);
-                    //after validating let's show the main Jframe
-                    Frm_Menu_Principal m = new Frm_Menu_Principal(leeUsuario(), id_usuarioS, id_sedeS);
-                    m.show();
-                    dispose();
+                    Frm_Menu_Principal m = new Frm_Menu_Principal(leeUsuario(), id_usuarioS, id_sedeS); m.show(); dispose();
 
                     Frm_Login mg = new Frm_Login(id_usuario, id_sede);
                     mg.setVisible(false);
@@ -314,9 +306,9 @@ ConfigGeneral config = new ConfigGeneral();
             }
         }, 800 * 1);
     }
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         logear();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,8 +353,8 @@ ConfigGeneral config = new ConfigGeneral();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JLabel img_loader;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

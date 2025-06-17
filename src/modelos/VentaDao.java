@@ -36,7 +36,7 @@ import javax.swing.filechooser.FileSystemView;
  */
 public class VentaDao {
     Connection con;
-    conexion cn = new conexion();
+    Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
     int r;
@@ -45,7 +45,7 @@ public class VentaDao {
         int id = 0;
         String sql = "SELECT MAX(id) FROM venta_det";
         try {
-            con = cn.getConecxion();
+            con = cn.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -61,7 +61,7 @@ public class VentaDao {
          int r = 0;
     String sql = "INSERT INTO venta (serie, documento, fecha, hora, igv, sub_total, total_venta, leyenda, totalExonerado, totalGravado, tipofac, estado, id_cliente, id_usuario, id_sede) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     try {
-        con = cn.getConecxion();
+        con = cn.getConexion();
         ps = con.prepareStatement(sql);
         ps.setString(1, v.getSerie());
         ps.setString(2, v.getDocumento());
@@ -95,7 +95,7 @@ public class VentaDao {
     public int RegistrarDetalle(Detalle Dv){
        String sql = "INSERT INTO venta_det (cantidad, descripcion, precio,igv,subtotal,total_venta, id_venta,id_producto) VALUES (?,?,?,?,?,?,?,?)";
         try {
-            con = cn.getConecxion();
+           con = cn.getConexion();
             ps = con.prepareStatement(sql);
             ps.setInt(1, Dv.getCantidad());
             
@@ -123,7 +123,7 @@ public class VentaDao {
     public boolean ActualizarStock(int cant, int id){
         String sql = "UPDATE producto SET stock = ? WHERE id = ?";
         try {
-            con = cn.getConecxion();
+            con = cn.getConexion();
             ps = con.prepareStatement(sql);
             ps.setInt(1,cant);
             ps.setInt(2, id);
@@ -165,7 +165,7 @@ public class VentaDao {
             String config = "SELECT * FROM config";
             String mensaje = "";
             try {
-                con = cn.getConecxion();
+                con = cn.getConexion();
                 ps = con.prepareStatement(config);
                 rs = ps.executeQuery();
                 if (rs.next()) {
