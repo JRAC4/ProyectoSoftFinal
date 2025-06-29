@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelos.UsuarioDAO;
+import controlador.UsuarioDAO;
 import utilidades.Alerta;
 import utilidades.Fecha_Date;
 
@@ -379,10 +379,10 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-//
-//        Fm_Sede formulario = new Fm_Sede(id_usuario, id_sede, 0);
-//        formulario.setLocationRelativeTo(null);
-//        formulario.setVisible(true);
+
+        Fm_Sede formulario = new Fm_Sede(id_usuario, id_sede, 1);
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
@@ -405,7 +405,7 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 
-        Sistema ventas = new Sistema();
+        Form_Venta ventas = new Form_Venta();
          ventas.setLocationRelativeTo(null);
         ventas.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed

@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modelos;
+package controlador;
 
+import conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modelos.productos;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.sql.SQLException;
  */
 public class productosDAO {
     Connection con;
-    conexion cn = new conexion();
+    Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
     
@@ -24,7 +26,7 @@ public class productosDAO {
         productos producto = new productos();
         String sql = "SELECT * FROM producto WHERE id_producto = ?";
         try {
-            con = cn.getConecxion();
+            con = cn.getConexion();
             ps = con.prepareStatement(sql);
             ps.setString(1, cod);
             rs = ps.executeQuery();
@@ -44,7 +46,7 @@ public class productosDAO {
         productos pro = new productos();
         String sql = "SELECT m.id_marca AS id_marca, m.descripcion AS nombre_marca, p.* FROM producto p INNER JOIN marca m ON p.id_marca = m.id_marca WHERE p.id_producto = ?";
         try {
-            con = cn.getConecxion();
+            con = cn.getConexion();
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();

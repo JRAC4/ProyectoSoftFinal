@@ -11,19 +11,19 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Detalle;
-import modelos.Eventos;
 import modelos.Venta;
-import modelos.VentaDao;
+import controlador.VentaDao;
 import modelos.cliente;
-import modelos.clienteDAO;
+import controlador.clienteDAO;
 import modelos.productos;
-import modelos.productosDAO;
+import controlador.productosDAO;
+import utilidades.Eventos;
 
 /**
  *
  * @author jesus
  */
-public class Sistema extends javax.swing.JFrame {
+public class Form_Venta extends javax.swing.JFrame {
 
     Date fechaVenta = new Date();
    productos pro = new productos();
@@ -40,7 +40,7 @@ public class Sistema extends javax.swing.JFrame {
     Venta v = new Venta();
     VentaDao Vdao = new VentaDao();
     double Totalpagar = 0.00;
-    public Sistema() {
+    public Form_Venta() {
         initComponents();
     }
 
@@ -442,20 +442,21 @@ public class Sistema extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_Venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_Venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_Venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_Venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sistema().setVisible(true);
+                new Form_Venta().setVisible(true);
             }
         });
     }

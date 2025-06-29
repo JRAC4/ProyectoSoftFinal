@@ -1,5 +1,6 @@
-package modelos;
+package utilidades;
 
+import modelos.*;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 

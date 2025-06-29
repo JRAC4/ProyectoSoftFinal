@@ -1,4 +1,4 @@
-package modelos;
+package conexion;
 
 
 public class pruebaConexion {

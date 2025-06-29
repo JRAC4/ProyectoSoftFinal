@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modelos;
+package controlador;
 
+import conexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modelos.cliente;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.sql.SQLException;
  */
 public class clienteDAO {
     Connection con;
-    conexion cn = new conexion();
+    Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
     
@@ -24,7 +26,7 @@ public class clienteDAO {
        cliente cl = new cliente();
     String sql = "SELECT * FROM cliente WHERE num_documento = ?";
     try {
-        con = cn.getConecxion();
+        con = cn.getConexion();
         ps = con.prepareStatement(sql);
         ps.setString(1, dni);  // porque num_documento es varchar
         rs = ps.executeQuery();

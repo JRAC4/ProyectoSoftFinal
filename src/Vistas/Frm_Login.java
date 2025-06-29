@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import modelos.UsuarioDAO;
+import controlador.UsuarioDAO;
 import utilidades.Alerta;
 import utilidades.ConfigGeneral;
 import utilidades.FormatoTextField;
