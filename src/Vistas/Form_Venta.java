@@ -13,9 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import modelos.Detalle;
 import modelos.Venta;
 import controlador.VentaDao;
-import modelos.cliente;
+import modelos.Cliente;
 import controlador.clienteDAO;
-import modelos.productos;
+import modelos.Producto;
 import controlador.productosDAO;
 import utilidades.Eventos;
 
@@ -26,10 +26,10 @@ import utilidades.Eventos;
 public class Form_Venta extends javax.swing.JFrame {
 
     Date fechaVenta = new Date();
-   productos pro = new productos();
+   Producto pro = new Producto();
    productosDAO proDao = new productosDAO();
    Eventos event = new Eventos();
-   cliente cl = new cliente();
+   Cliente cl = new Cliente();
     clienteDAO client = new clienteDAO();
     String fechaActual = new SimpleDateFormat("dd/MM/yyyy").format(fechaVenta);
     Detalle Dv = new Detalle();

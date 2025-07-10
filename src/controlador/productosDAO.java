@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelos.productos;
+import modelos.Producto;
 
 /**
  *
@@ -21,9 +21,9 @@ public class productosDAO {
     PreparedStatement ps;
     ResultSet rs;
     
-    public productos BuscarPro(String cod){
+    public Producto BuscarPro(String cod){
         
-        productos producto = new productos();
+        Producto producto = new Producto();
         String sql = "SELECT * FROM producto WHERE id_producto = ?";
         try {
             con = cn.getConexion();
@@ -42,8 +42,8 @@ public class productosDAO {
         return producto;
     }
     
-    public productos BuscarId(int id){
-        productos pro = new productos();
+    public Producto BuscarId(int id){
+        Producto pro = new Producto();
         String sql = "SELECT m.id_marca AS id_marca, m.descripcion AS nombre_marca, p.* FROM producto p INNER JOIN marca m ON p.id_marca = m.id_marca WHERE p.id_producto = ?";
         try {
             con = cn.getConexion();

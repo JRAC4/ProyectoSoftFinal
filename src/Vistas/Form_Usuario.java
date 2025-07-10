@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Perfil;
-import modelos.Sedes;
+import modelos.Sede;
 import modelos.Usuario;
 import modelos.UsuarioSede;
 import utilidades.Alerta;
@@ -38,7 +38,7 @@ public class Form_Usuario extends javax.swing.JDialog {
     ArrayList<Perfil> lista_Perfil = null;// creamos la lista para el objeto
     PerfilDAO controladorPerfil = null;//llamamos al mentenimiento general del objeto  
  
-    ArrayList<Sedes> lista_Sedes = null;// creamos la lista para el objeto
+    ArrayList<Sede> lista_Sedes = null;// creamos la lista para el objeto
     ArrayList<UsuarioSede> lista_UsuarioSede = null;// creamos la lista para el objeto
     SedeDAO controladorSedes = new SedeDAO();//llamamos al mentenimiento general del objeto
     UsuarioSedeDAO controladorUsuarioSede = new UsuarioSedeDAO();//llamamos al mentenimiento general del objeto
@@ -130,7 +130,7 @@ public class Form_Usuario extends javax.swing.JDialog {
 
     //RELIZAMOS LA CARGA DE DATOS PARA EL COMBO DE LECTURA 
     public void lista_Sedes() {//LISTA TODAS EMPRESAS 
-        lista_Sedes = (ArrayList<Sedes>) controladorSedes.listar();
+        lista_Sedes = (ArrayList<Sede>) controladorSedes.listar();
         cboSede.removeAllItems();
         for (int i = 0; i < lista_Sedes.size(); i++) {
             cboSede.addItem(lista_Sedes.get(i).getDescripcion());

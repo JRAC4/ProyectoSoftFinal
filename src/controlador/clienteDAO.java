@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import modelos.cliente;
+import modelos.Cliente;
 
 /**
  *
@@ -22,8 +22,8 @@ public class clienteDAO {
     ResultSet rs;
     
     
-    public cliente Buscarcliente(String dni){
-       cliente cl = new cliente();
+    public Cliente Buscarcliente(String dni){
+       Cliente cl = new Cliente();
     String sql = "SELECT * FROM cliente WHERE num_documento = ?";
     try {
         con = cn.getConexion();

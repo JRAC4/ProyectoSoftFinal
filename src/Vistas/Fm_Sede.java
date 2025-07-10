@@ -20,7 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelos.Sedes;
+import modelos.Sede;
 import utilidades.Alerta;
 import utilidades.Colorear_Tablas;
 import utilidades.ConfigGeneral;
@@ -38,7 +38,7 @@ public class Fm_Sede extends javax.swing.JFrame {
     private String ruta = config.getRuta();
 
     DefaultTableModel modelo = null;//creamos el modelo de la tabla 
-    ArrayList<Sedes> lista_Sedes = null;// creamos la lista para el objeto 
+    ArrayList<Sede> lista_Sedes = null;// creamos la lista para el objeto 
     SedeDAO controlador = null;//llamamos al mentenimiento general del objeto
 
     FormatoTextField JTF = new FormatoTextField();
@@ -122,7 +122,7 @@ public class Fm_Sede extends javax.swing.JFrame {
 
         public void lista_Sedes(String dato) {//LISTA TODAS EMPRESAS  
             int cnt_carga = Integer.parseInt(cboCnt_Carga.getSelectedItem().toString());
-            lista_Sedes = (ArrayList<Sedes>) controlador.listarCnt(dato, cnt_carga);
+            lista_Sedes = (ArrayList<Sede>) controlador.listarCnt(dato, cnt_carga);
             int num = 0;
             for (int i = 0; i < lista_Sedes.size(); i++) {
                 num++;

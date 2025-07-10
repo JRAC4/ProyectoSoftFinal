@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import modelos.Sedes;
+import modelos.Sede;
 import utilidades.ConfigGeneral;
 
 /**
@@ -21,15 +21,15 @@ import utilidades.ConfigGeneral;
  */
 public class SedeDAO{
 
-    private Sedes sede;
+    private Sede sede;
     ConfigGeneral config = new ConfigGeneral();
 
     
-    public List<Sedes> listar() {
+    public List<Sede> listar() {
         Connection con = null;
         PreparedStatement pst = null;
         Conexion Conexion = new Conexion();
-        ArrayList<Sedes> listaArray = new ArrayList<Sedes>();
+        ArrayList<Sede> listaArray = new ArrayList<Sede>();
         try {
             con = Conexion.getConexion();
             pst = con.prepareStatement("Select * from sede where estado='1' order by descripcion");
@@ -46,7 +46,7 @@ public class SedeDAO{
                 int estado = rs.getInt(8);
                 String serie_boleta = rs.getString(9);
                 String serie_factura = rs.getString(10);
-                listaArray.add(new Sedes(id_sede, descripcion, direccion, celular, ruc,
+                listaArray.add(new Sede(id_sede, descripcion, direccion, celular, ruc,
                         email_origen, foto, estado,serie_boleta,serie_factura));
             }
             rs.close();
@@ -68,11 +68,11 @@ public class SedeDAO{
     }
 
     
-   public List<Sedes> listarCnt(String dato, int cnt) {
+   public List<Sede> listarCnt(String dato, int cnt) {
     Connection con = null;
     PreparedStatement pst = null;
     Conexion Conexion = new Conexion();
-    ArrayList<Sedes> listaArray = new ArrayList<>();
+    ArrayList<Sede> listaArray = new ArrayList<>();
     try {
         con = Conexion.getConexion();
         String sql = "SELECT * FROM sede WHERE descripcion LIKE ? AND estado = 1 "
@@ -94,7 +94,7 @@ public class SedeDAO{
             String serie_boleta = rs.getString(9);
             String serie_factura = rs.getString(10);
 
-            listaArray.add(new Sedes(id_sede, descripcion, direccion, celular, ruc,
+            listaArray.add(new Sede(id_sede, descripcion, direccion, celular, ruc,
                                      email_origen, foto, estado, serie_boleta, serie_factura));
         }
         rs.close();
@@ -111,7 +111,7 @@ public class SedeDAO{
     return listaArray;
 }
 
-public void registrar(Sedes obj) {
+public void registrar(Sede obj) {
     String consulta = "INSERT INTO sede (descripcion, direccion, celular, ruc, email_origen, foto, estado, serie_boleta, serie_factura) " +
                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -138,7 +138,7 @@ public void registrar(Sedes obj) {
 
 
     
-public boolean actualizar(Sedes obj) {
+public boolean actualizar(Sede obj) {
     try (Connection con = Conexion.getConexion()) {
         // Actualizar tabla sede
         String consultaSede = "UPDATE sede SET descripcion = ?, direccion = ?, celular = ?, ruc = ?, " +
@@ -213,7 +213,7 @@ public boolean actualizarFoto(String foto, int id_sede) {
 }
 
     
- public Sedes buscar_por_id(Integer id) {
+ public Sede buscar_por_id(Integer id) {
     Connection con = null;
     PreparedStatement pst = null;
     Conexion Conexion = new Conexion();
@@ -238,7 +238,7 @@ public boolean actualizarFoto(String foto, int id_sede) {
             String serie_factura = rs.getString("serie_factura");
 
             // Constructor con solo los campos válidos
-            sede = new Sedes(id_sede, descripcion, direccion, celular, ruc,
+            sede = new Sede(id_sede, descripcion, direccion, celular, ruc,
                              email_origen, foto, estado, serie_boleta, serie_factura);
         }
 
@@ -262,11 +262,11 @@ public boolean actualizarFoto(String foto, int id_sede) {
     }
 
 
-    public Sedes getSedes() {
+    public Sede getSedes() {
         return sede;
     }
 
-    public void setSedes(Sedes sede) {
+    public void setSedes(Sede sede) {
         this.sede = sede;
     }
 

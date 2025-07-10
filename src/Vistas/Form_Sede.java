@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import modelos.Sedes;
+import modelos.Sede;
 import utilidades.Alerta;
 import utilidades.AlertaBien;
 import utilidades.AlertaError;
@@ -504,7 +504,7 @@ public class Form_Sede extends javax.swing.JDialog {
                 }
 
                 // Crear objeto sin los campos eliminados
-                Sedes sedes = new Sedes(
+                Sede sedes = new Sede(
                     0, leeDescripcion(), leeDireccion(), leeCelular(), leeRuc(),
                     leeEmailOrigen(), leeRuta(), 1, leeSerieBoleta(), leeSerieFactura()
                 );
@@ -533,7 +533,7 @@ public class Form_Sede extends javax.swing.JDialog {
                     return;
                 }
 
-                Sedes sedes = new Sedes(
+                Sede sedes = new Sede(
                     leeId(), leeDescripcion(), leeDireccion(), leeCelular(), leeRuc(),
                     leeEmailOrigen(), leeRuta(), 1, leeSerieBoleta(), leeSerieFactura()
                 );
