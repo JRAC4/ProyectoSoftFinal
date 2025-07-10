@@ -86,7 +86,7 @@ public class SedeDAO{
             int id_sede = rs.getInt(1);
             String descripcion = rs.getString(2);
             String direccion = rs.getString(3);
-            String celular = rs.getString(4);         // ⚠ Verifica que los índices coincidan con tu tabla
+            String celular = rs.getString(4);
             String ruc = rs.getString(5);
             String email_origen = rs.getString(6);
             String foto = rs.getString(7);
@@ -216,7 +216,6 @@ public boolean actualizarFoto(String foto, int id_sede) {
  public Sedes buscar_por_id(Integer id) {
     Connection con = null;
     PreparedStatement pst = null;
-    Sedes sede = null;
     Conexion Conexion = new Conexion();
 
     try {
@@ -247,17 +246,20 @@ public boolean actualizarFoto(String foto, int id_sede) {
 
     } catch (SQLException e) {
         System.out.println("Error en buscar_por_id: " + e);
-    } finally {
-        try {
-            if (pst != null) pst.close();
-            if (con != null) con.close();
-        } catch (SQLException e) {
-            System.out.println("Error al cerrar conexión: " + e);
+      } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar ");
+            }
         }
+        return sede;
     }
-
-    return sede;
-}
 
 
     public Sedes getSedes() {

@@ -77,7 +77,7 @@ public class UsuarioSedeDAO {
 
 
     
-  public void eliminar(int id_usuario) {
+  public void eliminar(int id_usuario,int idusuario,int id_sede) {
     String consulta = "DELETE FROM usuario_sede WHERE id_usuario = ?";
 
     try (Connection con = Conexion.getConexion();

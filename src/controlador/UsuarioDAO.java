@@ -22,7 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.Usuario;
 import utilidades.ConfigGeneral;
-import utilidades.encriptar;
+import utilidades.Encriptar;
 
 /**
  *
@@ -156,7 +156,7 @@ public void registrar(Usuario obj) {
 
         ps.setString(1, obj.getUsuario());
         ps.setInt(2, obj.getEstado());
-        ps.setString(3, encriptar.encriptarPassword(obj.getPassword())); // Encriptado en Java
+        ps.setString(3, Encriptar.encriptar(obj.getPassword())); // Encriptado en Java
         ps.setInt(4, obj.getId_perfil());
         ps.setInt(5, obj.getId_sede());
 
@@ -179,7 +179,7 @@ public void actualizar(Usuario obj) {
          PreparedStatement ps = con.prepareStatement(consulta)) {
 
         ps.setString(1, obj.getUsuario());
-        ps.setString(2, encriptar.encriptarPassword(obj.getPassword())); // Encriptado en Java
+        ps.setString(2, Encriptar.encriptar(obj.getPassword())); // Encriptado en Java
         ps.setInt(3, obj.getId_perfil());
         ps.setInt(4, obj.getId_sede());
         ps.setInt(5, obj.getId_usuario());
@@ -285,7 +285,6 @@ public int obtenerId_descripcionSede(String usuario) {
     Connection con = null;
     PreparedStatement pst = null;
     Conexion Conexion = new Conexion();
-    Usuario usuario = null;
 
     try {
         con = Conexion.getConexion();
@@ -297,7 +296,7 @@ public int obtenerId_descripcionSede(String usuario) {
         if (rs.next()) {
             int id_usuario = rs.getInt("id_usuario");
             String usu = rs.getString("usuario");
-            String password = rs.getString("password"); // SHA-256 en Base64
+            String password = Encriptar.desencriptar(rs.getString("password"));
             int estado = rs.getInt("estado");
             int id_perfil = rs.getInt("id_perfil");
             int id_sede = rs.getInt("id_sede");
@@ -335,7 +334,7 @@ public boolean validaUsuario(String usuario, String password) {
          PreparedStatement pst = con.prepareStatement(sql)) {
 
         pst.setString(1, usuario);
-        pst.setString(2, encriptar.encriptarPassword(password)); // Reutiliza la misma lógica de encriptación
+        pst.setString(2, Encriptar.encriptar(password)); // Reutiliza la misma lógica de encriptación
         ResultSet rs = pst.executeQuery();
         boolean existe = rs.next(); // Si hay algún resultado, el usuario y la contraseña coinciden
         rs.close();

@@ -8,8 +8,7 @@ Connection con = null;
 String url = "jdbc:sqlserver://localhost:1433;databaseName=bdferricov1;encrypt=true;trustServerCertificate=true";
 String usr = "sa"; 
 String psw = "Gallo16_"; 
-con = DriverManager.getConnection(url,usr,psw);
-System.out.println("Conexion ok"); } 
+con = DriverManager.getConnection(url,usr,psw);} 
 catch (ClassNotFoundException ex) { System.out.println("No hay Driver!!"); } 
 catch (SQLException ex) 
 { System.out.println("Error con la BD"); }

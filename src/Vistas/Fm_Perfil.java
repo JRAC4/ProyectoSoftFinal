@@ -5,8 +5,7 @@
  */
 package Vistas;
 
-
-import controlador.SedeDAO;
+import controlador.PerfilDAO;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -17,10 +16,9 @@ import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelos.Sedes;
+import modelos.Perfil;
 import utilidades.Alerta;
 import utilidades.Colorear_Tablas;
 import utilidades.ConfigGeneral;
@@ -32,57 +30,48 @@ import utilidades.ImgTabla;
  *
  * @author frank
  */
-public class Fm_Sede extends javax.swing.JFrame {
+public class Fm_Perfil extends javax.swing.JFrame {
 
     ConfigGeneral config = new ConfigGeneral();
     private String ruta = config.getRuta();
 
     DefaultTableModel modelo = null;//creamos el modelo de la tabla 
-    ArrayList<Sedes> lista_Sedes = null;// creamos la lista para el objeto 
-    SedeDAO controlador = null;//llamamos al mentenimiento general del objeto
+    ArrayList<Perfil> lista_Perfil = null;// creamos la lista para el objeto 
+    PerfilDAO controlador = null;//llamamos al mentenimiento general del objeto  
 
     FormatoTextField JTF = new FormatoTextField();
     Colorear_Tablas col = new Colorear_Tablas();
     FormatoCombox JCX = new FormatoCombox();
 
     private int opcion_visual = config.getOpcion_visual();
-    private int id_usuarios, id_sedes;
-//        this.id_usuarios=id_usuario;
-//        this.id_sedes=id_sede;
+    private int ver;
 
-    public Fm_Sede(int id_usuario, int id_sede, int opcion) {
+    public Fm_Perfil(int ver) {
         initComponents();
-        this.id_usuarios = id_usuario;
-        this.id_sedes = id_sede;
-
-        controlador = new SedeDAO();
+        this.ver = ver;
+        controlador = new PerfilDAO();
 
         JTF.modelo_1TF(txtBusqueda, opcion_visual);
         JCX.modelo_1CBX(cboCnt_Carga);
-        lblIdArea.setVisible(false);
+        lblIdPerfil.setVisible(false);
         tblDetalle.setDefaultRenderer(Object.class, new ImgTabla());
 
-        this.setSize(930, 600);
+        this.setSize(870, 600);
         txtBusqueda.requestFocusInWindow();
         mostrar_Tabla();
         Limpiar_Tabla();
-        lista_Sedes(leeCampo());
+        lista_Perfil(leeCampo());
 
         setIconImage(new ImageIcon(getClass().getResource("/compac/icono/general/logos.png")).getImage());
-        this.setTitle("REGISTRO Y MANTENIMIENTO DE SEDES");
+        this.setTitle("REGISTRO Y MANTENIMIENTO DE PERFILES");
 
-        if (opcion == 1) {
-            jButton1.setEnabled(true);
-        } else {
-            jButton1.setEnabled(false);
-        }
         cerrar();
         txtBusqueda.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mostrar_Tabla();
                 Limpiar_Tabla();
-                lista_Sedes(leeCampo());
+                lista_Perfil(leeCampo());
                 txtBusqueda.setText("");
                 txtBusqueda.requestFocusInWindow();
             }
@@ -99,66 +88,69 @@ public class Fm_Sede extends javax.swing.JFrame {
         };
         modelo.addColumn("#");
         modelo.addColumn("DESCRIPCIÓN");
-        modelo.addColumn("DIRECCIÓN");
-        modelo.addColumn("CELULAR");
-        modelo.addColumn("RUC");
-        modelo.addColumn("FOTO");
         modelo.addColumn("");
         modelo.addColumn("");
-        tblDetalle.setRowHeight(40);
+        modelo.addColumn("");
+        tblDetalle.setRowHeight(26);
         tblDetalle.setModel(modelo);
         tblDetalle.setBackground(Color.WHITE);
         tblDetalle.setAutoResizeMode(tblDetalle.AUTO_RESIZE_OFF);
 
         tblDetalle.getColumnModel().getColumn(0).setPreferredWidth(30);
-        tblDetalle.getColumnModel().getColumn(1).setPreferredWidth(150);
-        tblDetalle.getColumnModel().getColumn(2).setPreferredWidth(280);
-        tblDetalle.getColumnModel().getColumn(3).setPreferredWidth(90);
-        tblDetalle.getColumnModel().getColumn(4).setPreferredWidth(100);
-        tblDetalle.getColumnModel().getColumn(5).setPreferredWidth(80);
-        tblDetalle.getColumnModel().getColumn(6).setPreferredWidth(30);
-        tblDetalle.getColumnModel().getColumn(7).setPreferredWidth(30);
+        tblDetalle.getColumnModel().getColumn(1).setPreferredWidth(710);
+        tblDetalle.getColumnModel().getColumn(2).setPreferredWidth(28);
+        tblDetalle.getColumnModel().getColumn(3).setPreferredWidth(28);
+        tblDetalle.getColumnModel().getColumn(4).setPreferredWidth(28);
     }
 
-        public void lista_Sedes(String dato) {//LISTA TODAS EMPRESAS  
-            int cnt_carga = Integer.parseInt(cboCnt_Carga.getSelectedItem().toString());
-            lista_Sedes = (ArrayList<Sedes>) controlador.listarCnt(dato, cnt_carga);
-            int num = 0;
-            for (int i = 0; i < lista_Sedes.size(); i++) {
-                num++;
-                Object datos[] = new Object[10];
+    public int leeIdSede() {
+        return Integer.parseInt(lblIdSede.getText());
+    }
 
-                datos[0] = (lista_Sedes.get(i).getId_sede()) + "";
-                datos[1] = (lista_Sedes.get(i).getDescripcion()) + "";
-                datos[2] = (lista_Sedes.get(i).getDireccion()) + "";
-                datos[3] = (lista_Sedes.get(i).getCelular()) + "";
-                datos[4] = (lista_Sedes.get(i).getRuc()) + "";
-
-                ImageIcon fot = new ImageIcon(ruta + "/Fotos/Sede/" + (lista_Sedes.get(i).getFoto()));
-
-                datos[5] = new JLabel(new ImageIcon(fot.getImage().getScaledInstance(40, 30, Image.SCALE_DEFAULT)));
-    //            datos[5] = (lista_Sedes.get(i).getFoto()) + "";
-                //BOTON MODIFICAR emp.icono.general
-                ImageIcon iconoModi = new ImageIcon(getClass().getResource("/compac/icono/general/EditarTabla_40px.png"));
-                Icon btnModificar = new ImageIcon(iconoModi.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT));
-                JButton botonModificar = new JButton("", btnModificar);
-                botonModificar.setName("btnModificar");
-                botonModificar.setToolTipText("Modificar Registro");
-
-                datos[6] = botonModificar;
-
-                //BOTON VER
-                ImageIcon iconoVer = new ImageIcon(getClass().getResource("/compac/icono/general/VerTabla_40px.png"));
-                Icon btnVer = new ImageIcon(iconoVer.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT));
-                JButton botonVer = new JButton("", btnVer);
-                botonVer.setName("btnVer");
-                botonVer.setToolTipText("Ver Registro");
-                datos[7] = botonVer;
-
-                modelo.addRow(datos);
-                lblCantidadDatos.setText("Cantidad de Datos Cargados: " + num);
-            }
+    public void lista_Perfil(String dato) {//LISTA TODAS EMPRESAS  
+        int cnt_carga = Integer.parseInt(cboCnt_Carga.getSelectedItem().toString());
+        if (ver == 1) {
+            lista_Perfil = (ArrayList<Perfil>) controlador.listarCnt(dato, cnt_carga);
+        } else {
+            lista_Perfil = (ArrayList<Perfil>) controlador.listarCntSinDes(dato, cnt_carga);
         }
+        int num = 0;
+        for (int i = 0; i < lista_Perfil.size(); i++) {
+            num++;
+            Object datos[] = new Object[6];
+
+            datos[0] = (lista_Perfil.get(i).getId_perfil()) + "";
+            datos[1] = (lista_Perfil.get(i).getDescripcion()) + "";
+            //BOTON MODIFICAR emp.icono.general
+            ImageIcon iconoModi = new ImageIcon(getClass().getResource("/compac/icono/general/EditarTabla_40px.png"));
+            Icon btnModificar = new ImageIcon(iconoModi.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT));
+            JButton botonModificar = new JButton("", btnModificar);
+            botonModificar.setName("btnModificar");
+            botonModificar.setToolTipText("Modificar Registro");
+
+            datos[2] = botonModificar;
+            //BOTON NUEVO
+            ImageIcon icono = new ImageIcon(getClass().getResource("/compac/icono/general/EliminarTabla_40px.png"));
+            Icon btnEliminar = new ImageIcon(icono.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT));
+            JButton botonEliminar = new JButton("", btnEliminar);
+            botonEliminar.setName("btnEliminar");
+            botonEliminar.setToolTipText("Eliminar Registro");
+
+            datos[3] = botonEliminar;
+
+            //BOTON VER
+            ImageIcon iconoVer = new ImageIcon(getClass().getResource("/compac/icono/general/VerTabla_40px.png"));
+            Icon btnVer = new ImageIcon(iconoVer.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT));
+            JButton botonVer = new JButton("", btnVer);
+            botonVer.setName("btnVer");
+            botonVer.setToolTipText("Ver Registro");
+            datos[4] = botonVer;
+
+            modelo.addRow(datos);
+            lblCantidadDatos.setText("Cantidad de Datos Cargados: " + num);
+
+        }
+    }
 
     /////LIMPIAR TABLA
     private void Limpiar_Tabla() {
@@ -176,7 +168,7 @@ public class Fm_Sede extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblIdArea = new javax.swing.JLabel();
+        lblIdSede = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -190,6 +182,7 @@ public class Fm_Sede extends javax.swing.JFrame {
         txtBusqueda = new org.edisoncor.gui.textField.TextFieldRectBackground();
         cboCnt_Carga = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        lblIdPerfil = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -202,12 +195,9 @@ public class Fm_Sede extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetalle = new javax.swing.JTable();
-
-        lblIdArea.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
@@ -238,9 +228,9 @@ public class Fm_Sede extends javax.swing.JFrame {
         jPanel12.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton4.setForeground(new java.awt.Color(51, 51, 51));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/compac/icono/general/buscar_16px.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/compac/icnono/botones/buscar_16px.png"))); // NOI18N
         jButton4.setText("Limpiar");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -265,7 +255,7 @@ public class Fm_Sede extends javax.swing.JFrame {
         jPanel4.add(jPanel6, java.awt.BorderLayout.CENTER);
 
         cboCnt_Carga.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "300", "500", "5000", "10000", "1000000" }));
-        cboCnt_Carga.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cboCnt_Carga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cboCnt_Carga.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 cboCnt_CargaMouseEntered(evt);
@@ -282,12 +272,14 @@ public class Fm_Sede extends javax.swing.JFrame {
         jButton1.setMnemonic('N');
         jButton1.setText(" Nuevo");
         jButton1.setToolTipText("Realizar Nuevo Registro");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        lblIdPerfil.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -296,9 +288,11 @@ public class Fm_Sede extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1006, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblIdPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cboCnt_Carga, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -311,7 +305,8 @@ public class Fm_Sede extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cboCnt_Carga)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(lblIdPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -341,18 +336,6 @@ public class Fm_Sede extends javax.swing.JFrame {
         jPanel10.add(jLabel10);
         jPanel10.add(jLabel11);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/compac/icono/general/pdf.png"))); // NOI18N
-        jButton3.setToolTipText("Exportación en Formato PDF");
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel10.add(jButton3);
-
         jPanel7.add(jPanel10);
 
         jPanel3.add(jPanel7, java.awt.BorderLayout.PAGE_END);
@@ -369,7 +352,7 @@ public class Fm_Sede extends javax.swing.JFrame {
 
             }
         ));
-        tblDetalle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tblDetalle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblDetalle.setFillsViewportHeight(true);
         tblDetalle.setGridColor(new java.awt.Color(247, 247, 247));
         tblDetalle.setSelectionBackground(new java.awt.Color(0, 102, 153));
@@ -397,20 +380,22 @@ public class Fm_Sede extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCnt_CargaMouseEntered
 
     private void cboCnt_CargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCnt_CargaActionPerformed
-
+        try {
+            mostrar_Tabla();
+            Limpiar_Tabla();
+            lista_Perfil(leeCampo());
+            txtBusqueda.setText("");
+            txtBusqueda.requestFocusInWindow();
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_cboCnt_CargaActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        new Form_Sede(this, true, 0, 0,id_usuarios).setVisible(true);
-
+        new Form_Perfil(null, true, 0, 0).setVisible(true);
         mostrar_Tabla();
         Limpiar_Tabla();
-        lista_Sedes(leeCampo());
+        lista_Perfil(leeCampo());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -425,8 +410,7 @@ public class Fm_Sede extends javax.swing.JFrame {
             txtBusqueda.requestFocusInWindow();
             mostrar_Tabla();
             Limpiar_Tabla();
-            lista_Sedes(leeCampo());
-            lista_Sedes("");
+            lista_Perfil(leeCampo());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -434,7 +418,8 @@ public class Fm_Sede extends javax.swing.JFrame {
     private void tblDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDetalleMouseClicked
         int fila = tblDetalle.getSelectedRow();
         String id = String.valueOf(tblDetalle.getValueAt(fila, 0));
-        lblIdArea.setText(id);
+        String descrip = String.valueOf(tblDetalle.getValueAt(fila, 1));
+        lblIdPerfil.setText(id);
 
         int colum = tblDetalle.getColumnModel().getColumnIndexAtX(evt.getX());
         int row = evt.getY() / tblDetalle.getRowHeight();
@@ -447,20 +432,21 @@ public class Fm_Sede extends javax.swing.JFrame {
 
                 if (boton.getName().equals("btnEliminar")) {
                     int filas = tblDetalle.getSelectedRowCount();
+
                     if (filas == 0) {//si no elije ninguna fila
                         JOptionPane.showMessageDialog(null, "Debe de seleccionar una fila", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     } else {//cuando si seleciona
                         String valor = String.valueOf(tblDetalle.getValueAt(fila, 1));
-                        int opcion = JOptionPane.showConfirmDialog(null, "Realmente desea eliminar la cantidad de carga " + valor + "?", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        int opcion = JOptionPane.showConfirmDialog(null, "Realmente desea eliminar el Perfil " + valor + "?", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                         if (opcion == JOptionPane.OK_OPTION) {
-                            int idobtenido = Integer.parseInt(lblIdArea.getText());
+                            int idobtenido = Integer.parseInt(lblIdPerfil.getText());
                             controlador.eliminar(idobtenido);
 
                             txtBusqueda.requestFocus();
                             mostrar_Tabla();
                             Limpiar_Tabla();
-                            lista_Sedes(leeCampo());
+                            lista_Perfil(leeCampo());
                             Alerta alert = new Alerta("Mensaje", "Eliminación Exitosa");
                             alert.setVisible(true);
 
@@ -471,29 +457,31 @@ public class Fm_Sede extends javax.swing.JFrame {
                         }
                     }
                 } else if (boton.getName().equals("btnModificar")) {
+
                     int filas = tblDetalle.getSelectedRowCount();
                     if (filas == 0) {//si no elije ninguna fila
                         JOptionPane.showMessageDialog(null, "Debe de seleccionar una fila", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     } else {//cuando si seleciona
 
-                        int idobtenido = Integer.parseInt(lblIdArea.getText());
-                        new Form_Sede(this, true, idobtenido, 0,id_usuarios).setVisible(true);
+                        int idobtenido = Integer.parseInt(lblIdPerfil.getText());
+                        new Form_Perfil(this, true, idobtenido, 0).setVisible(true);
                         mostrar_Tabla();
                         Limpiar_Tabla();
-                        lista_Sedes(leeCampo());
+                        lista_Perfil(leeCampo());
 
                     }
                 } else if (boton.getName().equals("btnVer")) {
+
                     int filas = tblDetalle.getSelectedRowCount();
                     if (filas == 0) {//si no elije ninguna fila
                         JOptionPane.showMessageDialog(null, "Debe de seleccionar una fila", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     } else {//cuando si seleciona
 
-                        int idobtenido = Integer.parseInt(lblIdArea.getText());
-                        new Form_Sede(this, true, idobtenido, 1,id_usuarios).setVisible(true);
+                        int idobtenido = Integer.parseInt(lblIdPerfil.getText());
+                        new Form_Perfil(this, true, idobtenido, 1).setVisible(true);
                         mostrar_Tabla();
                         Limpiar_Tabla();
-                        lista_Sedes(leeCampo());
+                        lista_Perfil(leeCampo());
 
                     }
                 }
@@ -503,7 +491,7 @@ public class Fm_Sede extends javax.swing.JFrame {
 
     public void cerrar() {
         try {
-            this.setDefaultCloseOperation(Fm_Sede.DO_NOTHING_ON_CLOSE);
+            this.setDefaultCloseOperation(Fm_Perfil.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent w) {
                     confirmarSalida();
@@ -536,37 +524,31 @@ public class Fm_Sede extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fm_Sede.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fm_Perfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fm_Sede.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fm_Perfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fm_Sede.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fm_Perfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fm_Sede.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fm_Perfil.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold
+        //</editor-fold> 
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold
+        //</editor-fold> 
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Fm_Sede(0, 0, 0).setVisible(true);
+                new Fm_Perfil(0).setVisible(true);
             }
         });
     }
@@ -574,7 +556,6 @@ public class Fm_Sede extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cboCnt_Carga;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -599,7 +580,8 @@ public class Fm_Sede extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidadDatos;
-    private javax.swing.JLabel lblIdArea;
+    private javax.swing.JLabel lblIdPerfil;
+    private javax.swing.JLabel lblIdSede;
     private javax.swing.JTable tblDetalle;
     private org.edisoncor.gui.textField.TextFieldRectBackground txtBusqueda;
     // End of variables declaration//GEN-END:variables

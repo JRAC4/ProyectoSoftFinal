@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import controlador.PerfilDAO;
+import controlador.SedeDAO;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
@@ -18,8 +20,8 @@ import utilidades.Fecha_Date;
 public class Frm_Menu_Principal extends javax.swing.JFrame {
 
     UsuarioDAO controladorUsuario = new UsuarioDAO();
-//    SedeImpl controladorSede = new SedeImpl();
-//    PerfilImpl controladorPerfil = new PerfilImpl();
+    SedeDAO controladorSede = new SedeDAO();
+    PerfilDAO controladorPerfil = new PerfilDAO();
 
     Fecha_Date fech = new Fecha_Date();
     Date now = new Date(System.currentTimeMillis());
@@ -33,12 +35,12 @@ public class Frm_Menu_Principal extends javax.swing.JFrame {
         this.id_usuario = id_usuario;
         this.id_sede = id_sede;
 
-//        controladorSede.buscar_por_id(id_sede);
+        controladorSede.buscar_por_id(id_sede);
         controladorUsuario.buscar_por_id(id_usuario);
-//        String empresa = controladorSede.getObSedes().getDescripcion();
+        String empresa = controladorSede.getSedes().getDescripcion();
 
         //MOSTRAMOS EN LA PARTE INFERIOR LOS DATOS CAPTURADOS
-//        txtCargo.setText(controladorPerfil.obtieneDescripcion_id(controladorUsuario.getObUsuario().getId_perfil()));
+        txtCargo.setText(controladorPerfil.obtieneDescripcion_id(controladorUsuario.getUsuario().getId_perfil()));
         txtUsuario.setText(usuario.toUpperCase());
         txtFecha.setText("" + fech.retorna_fecha_del_sistemaOrden());
         txtHora.setText(hour.format(now));
@@ -366,16 +368,16 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
 
-//        Fm_Usuario formulario = new Fm_Usuario(0, id_sede);
-//        formulario.setLocationRelativeTo(null);
-//        formulario.setVisible(true);
+        Fm_Usuario formulario = new Fm_Usuario(0, id_sede);
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-//
-//        Fm_Perfil formulario = new Fm_Perfil(0);
-//        formulario.setLocationRelativeTo(null);
-//        formulario.setVisible(true);
+
+        Fm_Perfil formulario = new Fm_Perfil(0);
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed

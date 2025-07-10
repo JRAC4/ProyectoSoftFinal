@@ -21,7 +21,7 @@ public class Archivos_Planos {
 
     ConfigGeneral config = new ConfigGeneral();
 
-    Encripar encrip = new Encripar();
+    Encriptar encrip = new Encriptar();
 
     public void crearTXT(String ruta, String texto) {
         File archi = new File(ruta);
@@ -62,7 +62,7 @@ public class Archivos_Planos {
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(";");
                 retorna = datos[valor];
-                return encrip.desencriptarGeneral(retorna);
+                return encrip.desencriptar(retorna);
             }
             br.close();
         } catch (IOException ioex) {

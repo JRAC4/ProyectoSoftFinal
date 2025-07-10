@@ -19,7 +19,7 @@ import utilidades.AlertaError;
 import utilidades.Archivos_Planos;
 import utilidades.ConfigGeneral;
 import utilidades.CopiarArchivo;
-import utilidades.Encripar;
+import utilidades.Encriptar;
 import utilidades.FormatoCombox;
 import utilidades.FormatoTextField;
 import utilidades.Validador_de_Campos;
@@ -30,7 +30,7 @@ public class Form_Sede extends javax.swing.JDialog {
     SedeDAO controlador = new SedeDAO(); //llamamos al mentenimiento general del objeto  
     Archivos_Planos arc = new Archivos_Planos();
 
-    Encripar encrip = new Encripar();
+    Encriptar encrip = new Encriptar();
     FormatoCombox JCX = new FormatoCombox();
     FormatoTextField JTF = new FormatoTextField();
     
