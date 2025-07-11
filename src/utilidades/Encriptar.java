@@ -9,10 +9,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 
-/**
- *
- * @author Ingenierofrankafurgm
- */
+
 public class Encriptar {
 
     // Clave de 16 caracteres (128 bits)

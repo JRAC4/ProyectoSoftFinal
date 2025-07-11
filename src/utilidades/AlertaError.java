@@ -11,10 +11,7 @@ import net.sf.jcarrierpigeon.Notification;
 import net.sf.jcarrierpigeon.NotificationQueue;
 import net.sf.jcarrierpigeon.WindowPosition;
 
-/**
- *
- * @author jason
- */
+
 public class AlertaError extends javax.swing.JFrame {
 
     /**

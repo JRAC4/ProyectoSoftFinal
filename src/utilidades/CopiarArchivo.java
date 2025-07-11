@@ -1,8 +1,6 @@
 package utilidades;
 import java.io.*;
-/**
- * @author Ingenierofrankafurgm
- */
+
 public class CopiarArchivo {
     /**
      * Instancia de la clase CopiarArchivo

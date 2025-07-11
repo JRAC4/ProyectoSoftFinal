@@ -13,10 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Ingenierofrankafurgm
- */
+
 public class Archivos_Planos {
 
     ConfigGeneral config = new ConfigGeneral();

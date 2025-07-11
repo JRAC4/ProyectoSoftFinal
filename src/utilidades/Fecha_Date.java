@@ -12,10 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- *
- * @author jason
- */
+
 public class Fecha_Date {
 
     public void sumadefecha(JDateChooser jd, int cantidad) {
