@@ -27,7 +27,7 @@ public class CntcargaDAO{
         ArrayList<Cntcarga> listaCnt_carga = new ArrayList<Cntcarga>();
         try {
             con = Conexion.getConexion();
-            pst = con.prepareStatement("select * from cntcarga where estado='1' order by cantidad ");
+            pst = con.prepareStatement("select * from cntcarga where estado='1' order by cantidad");
 
             ResultSet rs = pst.executeQuery();//si hay consulta 
             while (rs.next()) {

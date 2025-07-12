@@ -1,5 +1,6 @@
 package Vistas;
 
+import controlador.CntcargaDAO;
 import controlador.TipodocDAO;
 import java.awt.Color;
 import static java.awt.Component.CENTER_ALIGNMENT;
@@ -15,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelos.Cntcarga;
 import modelos.Tipodoc;
 import utilidades.Alerta;
 import utilidades.Colorear_Tablas;
@@ -32,7 +34,7 @@ public class Fm_Tipodoc extends javax.swing.JFrame {
     ConfigGeneral config = new ConfigGeneral();
     private String ruta = config.getRuta();
 
-    DefaultTableModel modelo = null;//creamos el modelo de la tabla 
+     DefaultTableModel modelo = null;//creamos el modelo de la tabla 
     ArrayList<Tipodoc> lista_ObTipodoc = null;// creamos la lista para el objeto 
     TipodocDAO controlador = null;//llamamos al mentenimiento general del objeto
 
@@ -44,8 +46,8 @@ public class Fm_Tipodoc extends javax.swing.JFrame {
 
     public Fm_Tipodoc() {
         initComponents();
-        controlador = new TipodocDAO();
 
+        controlador = new TipodocDAO();
         JTF.modelo_1TF(txtBusqueda, opcion_visual);
         JCX.modelo_1CBX(cboCnt_Carga);
         lblIdTipodoc.setVisible(false);
@@ -73,6 +75,7 @@ public class Fm_Tipodoc extends javax.swing.JFrame {
         });
 
     }
+    
 
     public void mostrar_Tabla() {
         modelo = new DefaultTableModel() {
@@ -279,7 +282,7 @@ public class Fm_Tipodoc extends javax.swing.JFrame {
 
         jPanel4.add(jPanel6, java.awt.BorderLayout.CENTER);
 
-        cboCnt_Carga.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "500", "5000" }));
+        cboCnt_Carga.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "100", "250", "500", "100" }));
         cboCnt_Carga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cboCnt_Carga.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -411,7 +414,14 @@ public class Fm_Tipodoc extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCnt_CargaMouseEntered
 
     private void cboCnt_CargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCnt_CargaActionPerformed
-
+        try {
+            mostrar_Tabla();
+            Limpiar_Tabla();
+            lista_ObTipodoc(leeCampo());
+            txtBusqueda.setText("");
+            txtBusqueda.requestFocusInWindow();
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_cboCnt_CargaActionPerformed
 
     private void tblDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDetalleMouseClicked
