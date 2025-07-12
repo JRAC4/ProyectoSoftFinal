@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
 import controlador.PerfilDAO;
@@ -37,7 +32,7 @@ public class Frm_Menu_Principal extends javax.swing.JFrame {
 
         controladorSede.buscar_por_id(id_sede);
         controladorUsuario.buscar_por_id(id_usuario);
-        String empresa = controladorSede.getSedes().getDescripcion();
+//        String empresa = controladorSede.getSedes().getDescripcion();
 
         //MOSTRAMOS EN LA PARTE INFERIOR LOS DATOS CAPTURADOS
         txtCargo.setText(controladorPerfil.obtieneDescripcion_id(controladorUsuario.getUsuario().getId_perfil()));
@@ -47,7 +42,7 @@ public class Frm_Menu_Principal extends javax.swing.JFrame {
 
         this.setExtendedState(MAXIMIZED_BOTH);//sirve para maximizar la pantalla
 setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getImage());
-        this.setTitle("SISTEMA DE COTIZACIONES - Ferrico");
+        this.setTitle("SISTEMA DE INVENTARIO Y VENTAS - FERRICO");
         cerrar();
     }
 
@@ -95,7 +90,7 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
@@ -104,6 +99,8 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
 
@@ -244,15 +241,17 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/compac/icono/general/colaboradores_16px.png"))); // NOI18N
-        jMenuItem10.setText("Clientes");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jMenuItem7.setForeground(new java.awt.Color(51, 51, 51));
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/compac/icono/general/colaboradores_16px.png"))); // NOI18N
+        jMenuItem7.setText("Clientes");
+        jMenuItem7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem10);
+        jMenu1.add(jMenuItem7);
 
         jMenuBar1.add(jMenu1);
 
@@ -353,6 +352,30 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
         });
         jMenu6.add(jMenuItem9);
 
+        jMenuItem14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jMenuItem14.setForeground(new java.awt.Color(51, 51, 51));
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/compac/icono/general/TipoDoc_16px.png"))); // NOI18N
+        jMenuItem14.setText("Afectación al igv");
+        jMenuItem14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem14);
+
+        jMenuItem15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jMenuItem15.setForeground(new java.awt.Color(51, 51, 51));
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/compac/icono/general/TipoDoc_16px.png"))); // NOI18N
+        jMenuItem15.setText("Afectos a igv");
+        jMenuItem15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem15);
+
         jMenuBar1.add(jMenu6);
 
         jMenu4.setForeground(new java.awt.Color(66, 66, 66));
@@ -416,12 +439,6 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2ActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-//              Fm_Clientes formulario = new Fm_Clientes(id_usuario, id_sede);
-//        formulario.setLocationRelativeTo(null);
-//        formulario.setVisible(true);
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
-
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
        Fm_Tipodoc formulario = new Fm_Tipodoc();
         formulario.setLocationRelativeTo(null);
@@ -454,6 +471,24 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
         formulario.setLocationRelativeTo(null);
         formulario.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+          Fm_Igv formulario = new Fm_Igv();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+          Fm_Grupo_Igv formulario = new Fm_Grupo_Igv();
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+ //              Fm_Clientes formulario = new Fm_Clientes(id_usuario, id_sede);
+//        formulario.setLocationRelativeTo(null);
+//        formulario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -502,14 +537,16 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;

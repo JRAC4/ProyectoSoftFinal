@@ -19,11 +19,15 @@ public class TipodocDAO {
              PreparedStatement pst = con.prepareStatement(sql);
              ResultSet rs = pst.executeQuery()) {
             while (rs.next()) {
-                listaArray.add(new Tipodoc(
-                        rs.getInt(1), rs.getString(2), rs.getInt(4),
-                        rs.getInt(3), rs.getString(5),
-                        rs.getInt(6), rs.getString(7)
-                ));
+              int id_tipodoc = rs.getInt(1);
+                String descripcion = rs.getString(2);
+                int longitud = rs.getInt(3);
+                int estado = rs.getInt(4);
+                String codigo = rs.getString(5);
+                int estado_view = rs.getInt(6);
+                String simbolo = rs.getString(7);
+                listaArray.add(new Tipodoc(id_tipodoc, descripcion, estado, longitud,
+                        codigo, estado_view, simbolo));
             }
         } catch (SQLException e) {
             System.out.println("Error en listar Tipodoc: " + e.getMessage());
@@ -40,11 +44,15 @@ public class TipodocDAO {
             pst.setInt(2, cnt);
             try (ResultSet rs = pst.executeQuery()) {
                 while (rs.next()) {
-                    listaArray.add(new Tipodoc(
-                            rs.getInt(1), rs.getString(2), rs.getInt(4),
-                            rs.getInt(3), rs.getString(5),
-                            rs.getInt(6), rs.getString(7)
-                    ));
+                    int id_tipodoc = rs.getInt(1);
+                String descripcion = rs.getString(2);
+                int longitud = rs.getInt(3);
+                int estado = rs.getInt(4);
+                String codigo = rs.getString(5);
+                int estado_view = rs.getInt(6);
+                String simbolo = rs.getString(7);
+                listaArray.add(new Tipodoc(id_tipodoc, descripcion, estado, longitud,
+                        codigo, estado_view, simbolo));
                 }
             }
         } catch (SQLException e) {

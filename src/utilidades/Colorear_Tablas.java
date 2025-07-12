@@ -24,7 +24,6 @@ public class Colorear_Tablas extends DefaultTableCellRenderer {
             setBackground(Color.decode("#E3F2FD"));
             setForeground(Color.BLACK);
         }
-
         return this;
 
     }
