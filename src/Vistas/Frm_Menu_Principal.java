@@ -405,9 +405,9 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
-//        Fm_Categoria formulario = new Fm_Categoria(id_usuario, id_sede);
-//        formulario.setLocationRelativeTo(null);
-//        formulario.setVisible(true);
+ Fm_Categoria formulario = new Fm_Categoria(id_usuario, id_sede);
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -423,9 +423,9 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
 
-//        Fm_Marca formulario = new Fm_Marca(id_usuario, id_sede);
-//        formulario.setLocationRelativeTo(null);
-//        formulario.setVisible(true);
+        Fm_Marca formulario = new Fm_Marca(id_usuario, id_sede);
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -485,9 +485,9 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
- //              Fm_Clientes formulario = new Fm_Clientes(id_usuario, id_sede);
-//        formulario.setLocationRelativeTo(null);
-//        formulario.setVisible(true);
+     Fm_Clientes formulario = new Fm_Clientes(id_usuario, id_sede);
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**

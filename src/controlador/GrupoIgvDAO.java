@@ -9,7 +9,7 @@ import utilidades.ConfigGeneral;
 
 public class GrupoIgvDAO {
 
-    private GrupoIgv fac_grupo_igv;
+    private GrupoIgv grupo_igv;
     ConfigGeneral config = new ConfigGeneral();
 
     public List<GrupoIgv> listar() {
@@ -121,14 +121,13 @@ public class GrupoIgvDAO {
     }
 
     public GrupoIgv buscar_por_id(Integer id) {
-        GrupoIgv resultado = null;
         try (Connection con = new Conexion().getConexion();
              PreparedStatement pst = con.prepareStatement("SELECT * FROM grupo_igv WHERE id_grupo_igv = ?")) {
             pst.setInt(1, id);
 
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
-                    resultado = new GrupoIgv(
+                    grupo_igv = new GrupoIgv(
                             rs.getInt("id_grupo_igv"),
                             rs.getString("codigo"),
                             rs.getString("descripcion"),
@@ -140,7 +139,15 @@ public class GrupoIgvDAO {
         } catch (SQLException e) {
             System.err.println("Error en buscar_por_id: " + e.getMessage());
         }
-        return resultado;
+        return grupo_igv;
+    }
+    
+        public GrupoIgv getObFac_cat7() {
+        return grupo_igv;
+    }
+
+    public void setObFac_cat7(GrupoIgv grupo_igv) {
+        this.grupo_igv = grupo_igv;
     }
 
     public int obtenerId_descripcion(String descripcion) {
@@ -199,11 +206,5 @@ public class GrupoIgvDAO {
         return valor;
     }
 
-    public GrupoIgv getObFac_cat7() {
-        return fac_grupo_igv;
-    }
 
-    public void setObFac_cat7(GrupoIgv fac_grupo_igv) {
-        this.fac_grupo_igv = fac_grupo_igv;
-    }
 }

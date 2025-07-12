@@ -14,7 +14,7 @@ import modelos.Detalle;
 import modelos.Venta;
 import controlador.VentaDao;
 import modelos.Cliente;
-import controlador.clienteDAO;
+import controlador.ClienteDAO;
 import modelos.Producto;
 import controlador.productosDAO;
 import utilidades.Eventos;
@@ -30,7 +30,7 @@ public class Form_Venta extends javax.swing.JFrame {
    productosDAO proDao = new productosDAO();
    Eventos event = new Eventos();
    Cliente cl = new Cliente();
-    clienteDAO client = new clienteDAO();
+    ClienteDAO client = new ClienteDAO();
     String fechaActual = new SimpleDateFormat("dd/MM/yyyy").format(fechaVenta);
     Detalle Dv = new Detalle();
    
@@ -389,9 +389,9 @@ public class Form_Venta extends javax.swing.JFrame {
             if (!"".equals(txtRucVenta.getText())) {
                 String dni = txtRucVenta.getText();
                 cl = client.Buscarcliente(dni);
-                if (cl.getNombre() != null) {
-                    txtNombreClienteventa.setText("" + cl.getNombre());
-                    txtIdCV.setText("" + cl.getIdcliente());
+                if (cl.getNomcompleto()!= null) {
+                    txtNombreClienteventa.setText("" + cl.getNomcompleto());
+                    txtIdCV.setText("" + cl.getId_cliente());
                 } else {
                     txtRucVenta.setText("");
                     JOptionPane.showMessageDialog(null, "El cliente no existe");

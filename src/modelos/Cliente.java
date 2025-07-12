@@ -7,54 +7,58 @@ package modelos;
 
 public class Cliente {
     
-    private int idcliente;
-    private String tipodocu;
-    private int numdocum;
-    private String direccion;
-    private String celular;
+   private int id_cliente;
+    private String tipodoc;
+    private String num_documento, direccion, celular;
     private String email;
-    private String nombre;
-    private String estado;
-    private int id_tipodocum;
+    private int estado;
+    private String nomcompleto;
+    private int id_usuario, id_sede;
+    private String observacion;
+    private int id_tipodoc;
 
-    public Cliente(int idcliente, String tipodocu, int numdocum, String direccion, String celular, String email, String nombre, String estado, int id_tipodocum) {
-        this.idcliente = idcliente;
-        this.tipodocu = tipodocu;
-        this.numdocum = numdocum;
+    public Cliente(){
+    }
+    
+    public Cliente(int id_cliente, String tipodoc, String num_documento, String direccion,
+            String celular, String email, int estado, String nomcompleto,
+            int id_usuario, int id_sede,String observacion,int id_tipodoc) {
+        this.id_cliente = id_cliente;
+        this.tipodoc = tipodoc;
+        this.num_documento = num_documento;
         this.direccion = direccion;
         this.celular = celular;
         this.email = email;
-        this.nombre = nombre;
         this.estado = estado;
-        this.id_tipodocum = id_tipodocum;
+        this.nomcompleto = nomcompleto;
+        this.id_usuario = id_usuario;
+        this.id_sede = id_sede;
+        this.observacion = observacion;
+        this.id_tipodoc = id_tipodoc;
     }
 
-    public Cliente() {
+    public int getId_cliente() {
+        return id_cliente;
     }
 
-    
-    public int getIdcliente() {
-        return idcliente;
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
-    public void setIdcliente(int idcliente) {
-        this.idcliente = idcliente;
+    public String getTipodoc() {
+        return tipodoc;
     }
 
-    public String getTipodocu() {
-        return tipodocu;
+    public void setTipodoc(String tipodoc) {
+        this.tipodoc = tipodoc;
     }
 
-    public void setTipodocu(String tipodocu) {
-        this.tipodocu = tipodocu;
+    public String getNum_documento() {
+        return num_documento;
     }
 
-    public int getNumdocum() {
-        return numdocum;
-    }
-
-    public void setNumdocum(int numdocum) {
-        this.numdocum = numdocum;
+    public void setNum_documento(String num_documento) {
+        this.num_documento = num_documento;
     }
 
     public String getDireccion() {
@@ -81,28 +85,52 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
-    public int getId_tipodocum() {
-        return id_tipodocum;
+    public String getNomcompleto() {
+        return nomcompleto;
     }
 
-    public void setId_tipodocum(int id_tipodocum) {
-        this.id_tipodocum = id_tipodocum;
+    public void setNomcompleto(String nomcompleto) {
+        this.nomcompleto = nomcompleto;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+    public int getId_sede() {
+        return id_sede;
+    }
+
+    public void setId_sede(int id_sede) {
+        this.id_sede = id_sede;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    public int getId_tipodoc() {
+        return id_tipodoc;
+    }
+
+    public void setId_tipodoc(int id_tipodoc) {
+        this.id_tipodoc = id_tipodoc;
     }
     
     

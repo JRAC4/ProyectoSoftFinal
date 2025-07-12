@@ -12,7 +12,6 @@ import java.util.Base64;
 
 public class Encriptar {
 
-    // Clave de 16 caracteres (128 bits)
     private static final String CLAVE_SECRETA = "1234567890abcdef";
 
     // Método para encriptar texto
