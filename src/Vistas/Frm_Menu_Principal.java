@@ -412,9 +412,9 @@ setIconImage(new ImageIcon(getClass().getResource("/imagenes/logos.png")).getIma
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
 
-//        Fm_Producto formulario = new Fm_Producto(id_usuario, id_sede);
-//        formulario.setLocationRelativeTo(null);
-//        formulario.setVisible(true);
+        Fm_Producto formulario = new Fm_Producto(id_usuario, id_sede);
+        formulario.setLocationRelativeTo(null);
+        formulario.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed

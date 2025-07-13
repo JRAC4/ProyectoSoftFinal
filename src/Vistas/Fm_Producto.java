@@ -139,13 +139,13 @@ public class Fm_Producto extends javax.swing.JFrame {
         tblDetalle.getColumnModel().getColumn(0).setPreferredWidth(0);
         tblDetalle.getColumnModel().getColumn(1).setPreferredWidth(100);
         tblDetalle.getColumnModel().getColumn(2).setPreferredWidth(250);
+        tblDetalle.getColumnModel().getColumn(3).setPreferredWidth(100);
         tblDetalle.getColumnModel().getColumn(4).setPreferredWidth(100);
-        tblDetalle.getColumnModel().getColumn(5).setPreferredWidth(100);
-        tblDetalle.getColumnModel().getColumn(6).setPreferredWidth(200);
-        tblDetalle.getColumnModel().getColumn(7).setPreferredWidth(60);
+        tblDetalle.getColumnModel().getColumn(5).setPreferredWidth(200);
+        tblDetalle.getColumnModel().getColumn(6).setPreferredWidth(60);
+        tblDetalle.getColumnModel().getColumn(7).setPreferredWidth(28);
         tblDetalle.getColumnModel().getColumn(8).setPreferredWidth(28);
         tblDetalle.getColumnModel().getColumn(9).setPreferredWidth(28);
-        tblDetalle.getColumnModel().getColumn(10).setPreferredWidth(28);
     }
 
     public void lista_ObProducto(String dato) {//LISTA TODAS EMPRESAS  
@@ -170,7 +170,7 @@ public class Fm_Producto extends javax.swing.JFrame {
             JButton botonModificar = new JButton("", btnModificar);
             botonModificar.setName("btnModificar");
             botonModificar.setToolTipText("Modificar Registro");
-            datos[8] = botonModificar;
+            datos[7] = botonModificar;
 
             //BOTON NUEVO
             ImageIcon icono = new ImageIcon(getClass().getResource("/compac/icono/general/EliminarTabla_40px.png"));
@@ -178,7 +178,7 @@ public class Fm_Producto extends javax.swing.JFrame {
             JButton botonEliminar = new JButton("", btnEliminar);
             botonEliminar.setName("btnEliminar");
             botonEliminar.setToolTipText("Eliminar Registro");
-            datos[9] = botonEliminar;
+            datos[8] = botonEliminar;
 
             //BOTON VER
             ImageIcon iconoVer = new ImageIcon(getClass().getResource("/compac/icono/general/VerTabla_40px.png"));
@@ -186,7 +186,7 @@ public class Fm_Producto extends javax.swing.JFrame {
             JButton botonVer = new JButton("", btnVer);
             botonVer.setName("btnVer");
             botonVer.setToolTipText("Ver Registro");
-            datos[10] = botonVer;
+            datos[9] = botonVer;
 
             modelo.addRow(datos);
         }
