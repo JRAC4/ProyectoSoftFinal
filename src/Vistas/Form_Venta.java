@@ -16,7 +16,7 @@ import controlador.VentaDao;
 import modelos.Cliente;
 import controlador.ClienteDAO;
 import modelos.Producto;
-import controlador.productosDAO;
+import controlador.ProductoDAO;
 import utilidades.Eventos;
 
 /**
@@ -27,7 +27,7 @@ public class Form_Venta extends javax.swing.JFrame {
 
     Date fechaVenta = new Date();
    Producto pro = new Producto();
-   productosDAO proDao = new productosDAO();
+   ProductoDAO proDao = new ProductoDAO();
    Eventos event = new Eventos();
    Cliente cl = new Cliente();
     ClienteDAO client = new ClienteDAO();
@@ -281,9 +281,9 @@ public class Form_Venta extends javax.swing.JFrame {
             if (!"".equals(txtCodigoVenta.getText())) {
                 String cod = txtCodigoVenta.getText();
                 pro = proDao.BuscarPro(cod);
-                if (pro.getDescrip()!= null) {
+                if (pro.getDescripcion()!= null) {
                     txtIdPro.setText("" + pro.getId_producto());
-                    txtDescripcionVenta.setText("" + pro.getDescrip());
+                    txtDescripcionVenta.setText("" + pro.getDescripcion());
                     txtPrecioVenta.setText("" + pro.getPrecio());
                     txtStockDisponible.setText("" + pro.getStock());
                     txtCantidadVenta.requestFocus();

@@ -9,21 +9,22 @@ package modelos;
  *
  * @author frank
  */
-public class Producto {
+public class ProductoView {
 
     private int id_producto, id_categoria;
     private String descripcion, codigo;
     private double precio;
-    private int estado;
+    private int estado, stock;
     private String ubicacion;
     private int id_usuario, id_sede, id_marca, id_igv;
-    private String codigo_agrupacion;  
-     private double igv_agrupacion;
-     private int stock;
+    
+    private String descripcion_categoria, marca_descripcion, igv_descripcion;
+        private String codigo_agrupacion;  
+     private double igv_agrupacion;  
 
-    public Producto(int id_producto, int id_categoria, String descripcion, String codigo,
-            double precio, int estado, String ubicacion, int id_usuario, int id_sede, int id_marca,
-            int id_igv, String codigo_agrupacion, double igv_agrupacion, int stock) {
+    public ProductoView(int id_producto, int id_categoria, String descripcion, String codigo,
+            double precio, int estado, String ubicacion, int id_usuario, int id_sede, int id_marca, int id_igv, String descripcion_categoria, String marca_descripcion,
+            int stock, String igv_descripcion, String codigo_agrupacion, double igv_agrupacion) {
         this.id_producto = id_producto;
         this.id_categoria = id_categoria;
         this.descripcion = descripcion;
@@ -34,14 +35,15 @@ public class Producto {
         this.id_usuario = id_usuario;
         this.id_sede = id_sede;
         this.id_marca = id_marca;
+        this.stock = stock;
         this.id_igv = id_igv;
-         this.codigo_agrupacion = codigo_agrupacion;
+
+        this.descripcion_categoria = descripcion_categoria;
+        this.marca_descripcion = marca_descripcion;
+        this.igv_descripcion = igv_descripcion;
+        this.codigo_agrupacion = codigo_agrupacion;
           this.igv_agrupacion = igv_agrupacion;
-           this.stock = stock;
-          
     }
-    
-    public Producto(){}
 
     public int getId_producto() {
         return id_producto;
@@ -123,12 +125,38 @@ public class Producto {
         this.id_marca = id_marca;
     }
 
+
     public int getId_igv() {
         return id_igv;
     }
 
     public void setId_igv(int id_igv) {
         this.id_igv = id_igv;
+    }
+
+    public String getDescripcion_categoria() {
+        return descripcion_categoria;
+    }
+
+    public void setDescripcion_categoria(String descripcion_categoria) {
+        this.descripcion_categoria = descripcion_categoria;
+    } 
+
+    public String getMarca_descripcion() {
+        return marca_descripcion;
+    }
+
+    public void setMarca_descripcion(String marca_descripcion) {
+        this.marca_descripcion = marca_descripcion;
+    }
+
+
+    public String getIgv_descripcion() {
+        return igv_descripcion;
+    }
+
+    public void setIgv_descripcion(String igv_descripcion) {
+        this.igv_descripcion = igv_descripcion;
     }
 
     public String getCodigo_agrupacion() {
