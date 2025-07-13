@@ -74,6 +74,7 @@ public class Form_Producto extends javax.swing.JDialog {
 
         if (idproducto == 0) {
             btnBuscarCategoria.requestFocus();
+            txtStock.setText(1 + "");
         } else {
             controlador.buscar_por_id(idproducto);
             int id_producto = controlador.getProducto().getId_producto();
@@ -85,6 +86,7 @@ public class Form_Producto extends javax.swing.JDialog {
             String codigo = controlador.getProducto().getCodigo();
             double precio = controlador.getProducto().getPrecio();
             String ubicacion = controlador.getProducto().getUbicacion();
+            int stock= controlador.getProducto().getStock();
 //            String categoria = controlador.getProducto().getCategoria();
 //            ////////////////////////////////////////////////////////////////////////////
             txtDescripcion.setText(descripcion + "");
@@ -92,6 +94,7 @@ public class Form_Producto extends javax.swing.JDialog {
             txtUbicacion.setText(ubicacion);
             txtCodigo.setText(codigo);
             lblIdEmpresa.setText("" + id_producto);
+            txtStock.setText(stock + "");
 
             String des_categoria = controladorCategoria.obtieneDescripcion_id(id_categoria);
             txtDescripcionCategoria.setText(des_categoria);
@@ -105,6 +108,9 @@ public class Form_Producto extends javax.swing.JDialog {
 //            txtDescripcionUniMedida.setText(des_fac_cat3_umedida);
 //            lblIdUniMedida.setText("" + id_fac_cat3_umedida);
 
+
+
+
             String des_fac_fac_cat7_igv = controladorIgvDAO.obtieneDescripcion_id(id_fac_fac_cat7_igv);
             txtDescripcionAfectacion.setText(des_fac_fac_cat7_igv);
             lblIdAfectacion.setText("" + id_fac_fac_cat7_igv);
@@ -113,7 +119,6 @@ public class Form_Producto extends javax.swing.JDialog {
 
         if (ver == 1) {
 
-            btnBuscarUniMedida.setEnabled(false);
             btnBuscarAfectacion.setEnabled(false);
 
             txtCodigo.setEnabled(false);
@@ -157,8 +162,7 @@ public class Form_Producto extends javax.swing.JDialog {
         txtDescripcionMarca = new org.edisoncor.gui.textField.TextFieldRectBackground();
         btnNuevaMarca = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        btnBuscarUniMedida = new javax.swing.JButton();
-        txtDescripcionUniMedida = new org.edisoncor.gui.textField.TextFieldRectBackground();
+        txtStock = new org.edisoncor.gui.textField.TextFieldRectBackground();
         jLabel7 = new javax.swing.JLabel();
         txtDescripcionAfectacion = new org.edisoncor.gui.textField.TextFieldRectBackground();
         jLabel8 = new javax.swing.JLabel();
@@ -272,22 +276,15 @@ public class Form_Producto extends javax.swing.JDialog {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Marca *");
 
-        btnBuscarUniMedida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/compac/icnono/botones/buscar_16px.png"))); // NOI18N
-        btnBuscarUniMedida.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnBuscarUniMedida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarUniMedidaActionPerformed(evt);
-            }
-        });
-
-        txtDescripcionUniMedida.setEditable(false);
-        txtDescripcionUniMedida.setAnchoDeBorde(1.0F);
-        txtDescripcionUniMedida.setDescripcion("Descripción de Unidades de Medida");
-        txtDescripcionUniMedida.setEnabled(false);
-        txtDescripcionUniMedida.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtStock.setEditable(false);
+        txtStock.setText("Stock Actual");
+        txtStock.setAnchoDeBorde(1.0F);
+        txtStock.setDescripcion("Stock actual");
+        txtStock.setEnabled(false);
+        txtStock.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Unidades de Medida *");
+        jLabel7.setText("Stock");
 
         txtDescripcionAfectacion.setEditable(false);
         txtDescripcionAfectacion.setAnchoDeBorde(1.0F);
@@ -340,10 +337,7 @@ public class Form_Producto extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtDescripcionUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscarUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -399,14 +393,10 @@ public class Form_Producto extends javax.swing.JDialog {
                             .addComponent(btnBuscarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addGap(6, 6, 6)
-                            .addComponent(txtDescripcionUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(btnBuscarUniMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel8)
@@ -528,6 +518,10 @@ public class Form_Producto extends javax.swing.JDialog {
  }
      return igvAgrupacion;
     }
+       
+       public int leeStock() {
+        return Integer.parseInt(txtStock.getText());
+    }
     
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         if (txtDescripcionCategoria.getText().equalsIgnoreCase("")) {
@@ -544,8 +538,8 @@ public class Form_Producto extends javax.swing.JDialog {
             return;
         }
 
-        if (txtDescripcionUniMedida.getText().equalsIgnoreCase("")) {
-            txtDescripcionUniMedida.requestFocus();
+        if (txtStock.getText().equalsIgnoreCase("")) {
+            txtStock.requestFocus();
             AlertaError alert = new AlertaError("Mensaje", "Seleccione una Unidad de Medida Válida.");
             alert.setVisible(true);
             return;
@@ -587,7 +581,7 @@ public class Form_Producto extends javax.swing.JDialog {
                     return;
                 }
                 Producto producto = new Producto(0, leeIdCategoria(), leeDescripcion(), leeCoodigo(), leePrecio(), 1, leeUbicacion(),
-                        id_usuario, id_sede, leeIdMarca(), leeIdFac_cat7_Igv(), leeCodigoAgrupacion(), leeIgvAgrupacion(), 100);
+                        id_usuario, id_sede, leeIdMarca(), leeIdFac_cat7_Igv(), leeCodigoAgrupacion(), leeIgvAgrupacion(), leeStock());
                 controlador.registrar(producto);
 
                 int opcion = JOptionPane.showConfirmDialog(null, "Desea Realizar otro Registro?", "Mensaje", JOptionPane.OK_CANCEL_OPTION);
@@ -595,13 +589,14 @@ public class Form_Producto extends javax.swing.JDialog {
 
                     txtDescripcionCategoria.setText("");
                     txtDescripcionMarca.setText("");
-                    txtDescripcionUniMedida.setText("");
+                    txtStock.setText("");
                     txtDescripcionAfectacion.setText("");
 
                     txtPrecio.setText("");
                     txtUbicacion.setText("");
                     txtCodigo.setText("");
                     txtDescripcion.requestFocusInWindow();
+                    txtStock.setText(1+"");
                 } else {
                     this.dispose();
                 }
@@ -627,7 +622,7 @@ public class Form_Producto extends javax.swing.JDialog {
                 }
 
                 Producto producto = new Producto(leeId(), leeIdCategoria(), leeDescripcion(), leeCoodigo(), leePrecio(), 1, leeUbicacion(),
-                        id_usuario, id_sede, leeIdMarca(), leeIdFac_cat7_Igv(), leeCodigoAgrupacion(), leeIgvAgrupacion(), 100);
+                        id_usuario, id_sede, leeIdMarca(), leeIdFac_cat7_Igv(), leeCodigoAgrupacion(), leeIgvAgrupacion(), leeStock());
                 controlador.actualizar(producto);
 
                 
@@ -750,23 +745,6 @@ public class Form_Producto extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnNuevaMarcaActionPerformed
 
-    private void btnBuscarUniMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUniMedidaActionPerformed
-
-        new VistaGeneral(null, true, "UNIDADES DE MEDIDA", "fac_cat3_umedida", id_sede, id_usuario).setVisible(true);
-        if (VistaGeneral.respuesta == 1) {
-
-            txtDescripcionUniMedida.setText(VistaGeneral.descripcion_fac_cat3_umedida);
-            lblIdUniMedida.setText("" + VistaGeneral.id_fac_cat3_umedida);
-
-            AlertaBien alert = new AlertaBien("Mensaje", "Selección de Categoría Correcta");
-            alert.setVisible(true);
-        } else {
-            AlertaError alert = new AlertaError("Mensaje", "Operación Cancelada");
-            alert.setVisible(true);
-
-        }
-    }//GEN-LAST:event_btnBuscarUniMedidaActionPerformed
-
     private void btnBuscarAfectacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAfectacionActionPerformed
 
         new VistaGeneral(null, true, "TIPOS DE AFECTACIÓN", "fac_cat7_igv", id_sede, id_usuario).setVisible(true);
@@ -849,7 +827,6 @@ public class Form_Producto extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarAfectacion;
     private javax.swing.JButton btnBuscarCategoria;
     private javax.swing.JButton btnBuscarMarca;
-    private javax.swing.JButton btnBuscarUniMedida;
     private javax.swing.JButton btnNuevaCategoria;
     private javax.swing.JButton btnNuevaMarca;
     private javax.swing.JButton btnRegistrar;
@@ -874,8 +851,8 @@ public class Form_Producto extends javax.swing.JDialog {
     private org.edisoncor.gui.textField.TextFieldRectBackground txtDescripcionAfectacion;
     private org.edisoncor.gui.textField.TextFieldRectBackground txtDescripcionCategoria;
     private org.edisoncor.gui.textField.TextFieldRectBackground txtDescripcionMarca;
-    private org.edisoncor.gui.textField.TextFieldRectBackground txtDescripcionUniMedida;
     private org.edisoncor.gui.textField.TextFieldRectBackground txtPrecio;
+    private org.edisoncor.gui.textField.TextFieldRectBackground txtStock;
     private org.edisoncor.gui.textField.TextFieldRectBackground txtUbicacion;
     // End of variables declaration//GEN-END:variables
 }

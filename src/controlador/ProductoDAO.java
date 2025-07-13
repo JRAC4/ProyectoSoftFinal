@@ -38,8 +38,8 @@ public class ProductoDAO {
                         rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
                         rs.getDouble(5), rs.getInt(6), rs.getString(7), rs.getInt(8),
                         rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getString(12),
-                        rs.getString(13), rs.getInt(14), rs.getString(15),
-                        rs.getString(16), rs.getDouble(17));
+                        rs.getDouble(13), rs.getInt(14), rs.getString(15),
+                        rs.getString(16), rs.getString(17));
                 listaArray.add(p);
             }
             rs.close();
